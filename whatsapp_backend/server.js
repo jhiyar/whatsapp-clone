@@ -1,28 +1,33 @@
-// importing
-// import express from 'express'; package.json에 "type" : "module"을 추가했는데안되네...
-const express = require('express');
-const mongoose = require('mongoose');
-const Messages =require("./dbMessages.js");
-const Pusher = require('pusher');
-const cors = require('cors');
-const dbConfig = require('./dbConfig.json');
+// // importing
+// // import express from 'express'; package.json에 "type" : "module"을 추가했는데안되네...
 
-// app config
-const app = express();
-const port = process.env.PORT || 9000;
+import express from 'express'
+import mongoose from 'mongoose'
+import Messages from "./dbMessages.js"
+import Pusher from "pusher"
+
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const Messages =require("./dbMessages.js");
+// const Pusher = require('pusher');
+// const cors = require('cors');
+// const dbConfig = require('./dbConfig.json');
+
+// // app config
+ const app = express();
+ const port = process.env.PORT || 9000;
 
 const pusher = new Pusher({
-    appId: dbConfig.pusher.appId,
-    key: dbConfig.pusher.key,
-    secret: dbConfig.pusher.secret,
-    cluster: dbConfig.pusher.cluster,
-    // encrypted: true, //useTLS와 같이 사용할 수 없음
+    appId: "1272923",
+    key: "704040a77b12f08a700b",
+    secret: "ea1d866c110c369b27da",
+    cluster: "ap2",
     useTLS: true
-  });
+});
 
-// middleware
+// // middleware
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,7 +35,8 @@ app.use(cors());
 //     next();
 // })
 // DB config
-const connection_url =`mongodb+srv://admin:${dbConfig.dbPass}@cluster0.oozha.mongodb.net/${dbConfig.dbName}?retryWrites=true&w=majority`;
+
+const connection_url =`mongodb+srv://admin:8ku8CprL2RylpR0j@cluster0.zhpdh.mongodb.net/whatsapp?retryWrites=true&w=majority`;
 
 mongoose.connect(connection_url, {
     useCreateIndex: true,
@@ -38,7 +44,7 @@ mongoose.connect(connection_url, {
     useUnifiedTopology: true
 });
 
-const db = mongoose.connection;
+ const db = mongoose.connection;
 
 db.once('open', () => {
     console.log('DB connected');
@@ -63,11 +69,11 @@ db.once('open', () => {
     })
 })
 
-// ????
+// // ????
 
 
-// api routes
-app.get('/',(req,res) => res.status(200).send('Hello World'));
+// // api routes
+app.get('/', (request, response) => response.status(200).send('{"message":"Hello API ,This is an expressjs server API"}'));
 
 app.get('/messages/sync', (req, res) => {
     Messages.find((err, data) => { 
@@ -85,7 +91,7 @@ app.post('/messages/new', (req, res) => {
 
     Messages.create(dbMessage, (err, data) => {
         if (err) {
-            res.status(500).send(err);
+            res.status(500).send("" + err);
         }else{
             res.status(201).send(data);
         }
@@ -95,7 +101,7 @@ app.post('/messages/new', (req, res) => {
 
 
 // listener
-app.listen(port, () => console.log(`Listening on localhost:${port}`));
+ app.listen(port, () => console.log(`Listening on localhost:${port}`));
 
 
 

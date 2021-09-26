@@ -1,5 +1,5 @@
-// import mongoose from 'mongoose';
-const mongoose =require('mongoose');
+ import mongoose from 'mongoose';
+//const mongoose =require('mongoose');
 
 const whatsappSchema = mongoose.Schema({
     message: String,
@@ -9,5 +9,5 @@ const whatsappSchema = mongoose.Schema({
 })
 
 //collection
-// export default mongoose.model('messageContent', whatsappSchema);
-module.exports =  mongoose.model('messagecontents', whatsappSchema);
+export default mongoose.model('messagecontents', whatsappSchema);
+//module.exports =  mongoose.model('messagecontents', whatsappSchema);

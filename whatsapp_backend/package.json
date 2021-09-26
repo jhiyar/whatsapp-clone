@@ -1,7 +1,7 @@
 {
   "name": "whatsapp-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "node.js backend for whatsapp-clone",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -9,12 +9,12 @@
     "start": "node server.js",
     "lint": "eslint server.js"
   },
-  "author": "woong9149",
+  "author": "jhiyar",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.10.7",
+    "mongoose": "^5.13.9",
     "pusher": "^3.0.1",
     "pusher-js": "^7.0.0"
   }
