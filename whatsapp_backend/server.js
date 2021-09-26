@@ -30,11 +30,11 @@ const pusher = new Pusher({
 app.use(express.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers","*");
-   // next();
-})
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader("Access-Control-Allow-Headers","*");
+//    // next();
+// })
 // DB config
 
 const connection_url =`mongodb+srv://admin:8ku8CprL2RylpR0j@cluster0.zhpdh.mongodb.net/whatsapp?retryWrites=true&w=majority`;
