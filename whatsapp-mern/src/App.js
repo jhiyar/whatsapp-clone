@@ -16,14 +16,14 @@ function App() {
   },[]);
  
   useEffect(() => {
-    const pusher = new Pusher('3eb645d6628131c667e0', {
-      cluster: 'ap3'
+    const pusher = new Pusher('704040a77b12f08a700b', {
+      cluster: 'ap2'
     });
 
     const channel = pusher.subscribe('messages');
     channel.bind('inserted', function(newMessage) {
       console.log('inserted');
-      alert(JSON.stringify(newMessage));
+      //alert(JSON.stringify(newMessage));
       setMessages([...messages, newMessage])
     });
 
